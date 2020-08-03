@@ -16,9 +16,15 @@ from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 
 url = input('Enter the link : ')
-
+try:
+    res = requests.get(url)
+except requests.exceptions.ConnectionError:
+    print('Internet Connection Not Available')
+    exit()
 # Request To the url
-res = requests.get(url)
+
+
+
 
 # Converting the Response object to Beautifulsoup object
 soup = BeautifulSoup(res.text, 'lxml')
